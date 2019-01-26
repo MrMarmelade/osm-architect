@@ -1,4 +1,4 @@
-# OSM Architect <img src="https://raw.githubusercontent.com/MrJiggers/osm-architect/master/github/icon.png" width="30" height="30">
+# OSM Architect <img src="https://raw.githubusercontent.com/MrJiggers/osm-architect/master/github/icon.png" width="27" height="27">
   
 Application for 3D visualization of map data from OpenStreetMap.
 
