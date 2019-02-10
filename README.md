@@ -11,7 +11,7 @@ User can export map data from [OpenStreetMap](https://www.openstreetmap.org/) we
 <img src="https://raw.githubusercontent.com/MrJiggers/osm-architect/master/github/img2.png" />
 
 ## How to run it?
-* Export map from [OSM](https://www.openstreetmap.org/)
+* Export map from [OSM](https://www.openstreetmap.org/) (up to 1.5 square km)
 * Put it into Assets/Maps folder
 * Open project folder in Unity3D
 * Open Assets/Scenes/MainMenuScene scene
