@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LastSave>1546390167</LastSave>
+  <Language>1</Language>
+  <TerrainToggle>false</TerrainToggle>
+  <RoadObjectsToggle>true</RoadObjectsToggle>
+  <NumberOfTrees>100</NumberOfTrees>
+  <StorageType>0</StorageType>
+  <Tutorial>true</Tutorial>
+</Settings>

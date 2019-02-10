@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 24373fe4fbbbeb343a73ced0c325bc0a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - BlueCarPrefab: {fileID: 1064186813152392, guid: 9c9cc55a71aeef445aca77449b34b3bc,
+      type: 2}
+  - GreenCarPrefab: {fileID: 1210328970433854, guid: 2f29e951bc3d98845a396d5a437b7acb,
+      type: 2}
+  - BlueTruckPrefab: {fileID: 1897032820101242, guid: 7ffee1857efe42346b9aab11dfc1756c,
+      type: 2}
+  - TramPrefab: {fileID: 100088, guid: b45244874a5603341999df3dd53724c8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
