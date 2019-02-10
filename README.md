@@ -10,6 +10,13 @@ User can export map data from [OpenStreetMap](https://www.openstreetmap.org/) we
 <img src="https://raw.githubusercontent.com/MrJiggers/osm-architect/master/github/img5.png" />
 <img src="https://raw.githubusercontent.com/MrJiggers/osm-architect/master/github/img2.png" />
 
+## How to run it?
+* Export map from OSM
+* Put it into Assets/Maps folder
+* Open Assets/Scenes/MainMenuScene scene
+* Run
+
+
 This project was originally created as a Bachelor thesis at Faculty of Business and Economics (FBE) at Mendel University in Brno.
 
 
