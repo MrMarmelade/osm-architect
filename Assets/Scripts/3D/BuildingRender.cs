@@ -98,8 +98,7 @@ namespace _3D
                 //group parts of building together
                 var parentObj = GameObject.Find(buildingName + savedIndex);
                 //set collider and listener for controller click
-                var meshCollider = parentObj.AddComponent<MeshCollider>();
-                meshCollider.convex = true;
+                parentObj.AddComponent<MeshCollider>();
                 parentObj.AddComponent<GameObjectClick>();
                 for (var i = savedIndex; i < nameIndex; i++)
                 {
