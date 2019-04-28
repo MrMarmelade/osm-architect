@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml.Serialization;
 using UI;
 using UnityEngine;
+using Logger = Utils.Logger;
 
 namespace DataObjects.FileStructure
 {
@@ -18,7 +19,6 @@ namespace DataObjects.FileStructure
         public bool RoadObjectsToggle { get; set; }
         public int NumberOfTrees { get; set; }
         public int StorageType { get; set; }
-
         public bool Tutorial { get; set; }
 
 
@@ -33,10 +33,13 @@ namespace DataObjects.FileStructure
 
             //write into xml file
             var serializer = new XmlSerializer(typeof(Settings));
-            using (var stream = new FileStream(path, FileMode.Create))
+            if (File.Exists(path))
             {
-                serializer.Serialize(stream, this);
+                File.Delete(path);
             }
+            var stream = new FileStream(path, FileMode.CreateNew);
+            serializer.Serialize(stream, this);
+            stream.Close();
         }
 
         /**
@@ -45,10 +48,10 @@ namespace DataObjects.FileStructure
         public static Settings Load(string path)
         {
             var serializer = new XmlSerializer(typeof(Settings));
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                return serializer.Deserialize(stream) as Settings;
-            }
+            var stream = new FileStream(path, FileMode.Open);
+            var container = serializer.Deserialize(stream) as Settings;
+            stream.Close();
+            return container;
         }
     }
 }

@@ -72,8 +72,8 @@ public class Main : MonoBehaviour
         //load file
         xmlFile.Load(FileUtils.GetFullMapPath(Map.MapName));
         //get node and way tags
-        var nodeTags = xmlFile.GetElementsByTagName("node");
-        var wayTags = xmlFile.GetElementsByTagName("way");
+        var nodeTags = xmlFile.SelectNodes(".//node");
+        var wayTags = xmlFile.SelectNodes(".//way");
         //cache IDs in node tag for coordinate pairing
         var nodeTagIds = CacheNodeTagIds(nodeTags);
 

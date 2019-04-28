@@ -12,7 +12,7 @@ namespace UI
     public class SettingsSceneSet : MonoBehaviour
     {
         private Settings Settings;
-        public const string FilePathSettings = "./settings.xml";
+        public const string FilePathSettings = "settings.xml";
         public const string FilePathKey = "./apikey.xml";
         private static int DefaultNumberOfTrees = 100;
 
@@ -34,25 +34,34 @@ namespace UI
         {
             Settings = Main.Settings;
 
-            SetDropDownOptions();
             //set language dropdown 
             LanguageDropdown.value = Settings.Language;
-            LanguageDropdown.onValueChanged.AddListener(delegate { SaveSettings(); });
+            LanguageDropdown.onValueChanged.AddListener(delegate
+            {
+                SaveTemporaryChanges();
+                SetLanguageOptions();
+                SetTextTitles();
+            });
 
+            //set terrain toggle
             TerrainToggle.isOn = Settings.TerrainToggle;
-            TerrainToggle.onValueChanged.AddListener(delegate { SaveSettings(); });
+            TerrainToggle.onValueChanged.AddListener(delegate { SaveTemporaryChanges(); });
 
             //set model dropdown
             ModelDropdown.value = 0;
-            ModelDropdown.onValueChanged.AddListener(delegate { SaveSettings(); });
+            ModelDropdown.onValueChanged.AddListener(delegate
+            {
+                SetModelOptions();
+                SaveTemporaryChanges();
+            });
 
             //set road objects toggle 
             RoadObjectsToggle.isOn = Settings.RoadObjectsToggle;
-            RoadObjectsToggle.onValueChanged.AddListener(delegate { SaveSettings(); });
+            RoadObjectsToggle.onValueChanged.AddListener(delegate { SaveTemporaryChanges(); });
 
             //set tutorial toggle 
             TutorialToggle.isOn = !Settings.Tutorial;
-            TutorialToggle.onValueChanged.AddListener(delegate { SaveSettings(); });
+            TutorialToggle.onValueChanged.AddListener(delegate { SaveTemporaryChanges(); });
 
             //set slider
             if (Settings.NumberOfTrees >= 0 && Settings.NumberOfTrees <= 800)
@@ -76,7 +85,14 @@ namespace UI
                 ModelUrl.SetActive(false);
             }
 
+            SetLanguageOptions();
+            SetModelOptions();
             SetTextTitles();
+        }
+
+        private void OnDestroy()
+        {
+            SaveChangesToFile();
         }
 
         /**
@@ -105,13 +121,13 @@ namespace UI
         {
             var sliderValue = NumberOfTreesSlider.value;
             NumberOfTrees.text = ((int) sliderValue).ToString();
-            SaveSettings();
+            SaveTemporaryChanges();
         }
 
         /**
          * 
          */
-        private void SaveSettings()
+        private void SaveTemporaryChanges()
         {
             Settings.Tutorial = !TutorialToggle.isOn;
             //API key is wrong, disable toggle
@@ -122,19 +138,30 @@ namespace UI
             Settings.StorageType = ModelDropdown.value;
             Settings.RoadObjectsToggle = RoadObjectsToggle.isOn;
             Settings.NumberOfTrees = int.Parse(NumberOfTrees.text);
-            Settings.Save();
+        }
 
-            SetTextTitles();
-            SetDropDownOptions();
+        /**
+         * Write changes in settings into XML file
+         */
+        private void SaveChangesToFile()
+        {
+            Settings.Save();
         }
 
         /**
          * 
          */
-        private void SetDropDownOptions()
+        private void SetLanguageOptions()
         {
-            LanguageDropdown.ClearOptions();
+            LanguageDropdown.options.Clear();
             LanguageDropdown.AddOptions(LanguageUtils.GetLanguagesAsText());
+        }
+
+        /**
+         * 
+         */
+        private void SetModelOptions()
+        {
             ModelDropdown.ClearOptions();
             ModelDropdown.AddOptions(LanguageUtils.GetModelsAsText());
         }
